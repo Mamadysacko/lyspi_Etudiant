@@ -1,9 +1,7 @@
-// Detail.js
-
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, Linking, TouchableOpacity } from 'react-native';
 
-export default function Detail({ route }) {
+export default function OffersScreenDetail({ route }) {
   const { offre, entreprise } = route.params;
 
   return (
@@ -13,6 +11,7 @@ export default function Detail({ route }) {
         <Image source={{ uri: entreprise.logo_url }} style={styles.logo} />
       )}
 
+      {/* Image de la publication */}
       {/* Nom entreprise */}
       <Text style={styles.entreprise}>{entreprise.nom_entreprise}</Text>
       <Text style={styles.sigle}>{entreprise.sigle}</Text>
@@ -45,15 +44,9 @@ export default function Detail({ route }) {
       <Text style={styles.text}>{offre.tags}</Text>
 
       {/* Fichier joint */}
-      {offre.fichier_url && (
-        <>
-          <Text style={styles.sectionTitle}>Fichier joint :</Text>
-          <TouchableOpacity onPress={() => Linking.openURL(offre.fichier_url)}>
-            <Text style={styles.link}>Télécharger le fichier</Text>
-          </TouchableOpacity>
-        </>
+   {offre.fichier_url &&(
+        <Image source={{ uri: offre.fichier_url }} style={styles.offreImage} />
       )}
-
       {/* Type d'offre */}
       <Text style={styles.sectionTitle}>Type d'offre :</Text>
       <Text style={styles.text}>{offre.type_offre}</Text>
@@ -110,6 +103,12 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 8,
     alignSelf: 'center',
+    marginBottom: 16,
+  },
+  offreImage: {
+    width: '100%',
+    aspectRatio: 16 / 9, // Maintains aspect ratio for responsiveness
+    resizeMode: 'cover',
     marginBottom: 16,
   },
   entreprise: {

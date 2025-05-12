@@ -24,7 +24,7 @@ const InternshipScreen = () => {
   useEffect(() => {
     const fetchInternships = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/get_offres');
+        const response = await axios.get('http://localhost:3000/api/get_stages');
         setInternshipOffers(response.data);
       } catch (err) {
         setError('Failed to fetch data');
@@ -118,7 +118,7 @@ const InternshipScreen = () => {
     return (
       <Card style={styles.card}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate('FormationDetails', { offre: item.offre, entreprise: item.entreprise })}>
+          <TouchableOpacity onPress={() => navigation.navigate('StageDetails', { offre: item.offre, entreprise: item.entreprise })}>
             {item.entreprise.logo_url ? (
               <Image source={{ uri: item.entreprise.logo_url }} style={styles.logo} resizeMode="cover" />
             ) : (

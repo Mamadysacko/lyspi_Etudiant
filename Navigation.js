@@ -7,12 +7,13 @@ import ConnexionEtudiant from './Connexion/Pages/ConnexionEtudiant';
 import EcranCompteEtudiant from './Connexion/Pages/EcranCompteEtudiant';
 import Confirmation from './Connexion/Pages/Confirmation';
 import Motdepasse from './Connexion/Pages/Motdepasse';
-import AccueilEtudiant from './Connexion/Pages/AccueilEtudiant'; 
+import AccueilEtudiant from './Connexion/Pages/Navigation_etudiant'; 
 import Apropos from './Profil/apropos';
 import Contacter from './Profil/contacter';
 import Quitter from './Profil/quitter';
-import ApplyScreen   from './Compte/Pages/ApplyScreen';
-// Assurez-vous que le chemin d'importation est correct
+import ApplyScreen from './Compte/Pages/Postuler';
+
+// Création du stack navigator
 const Stack = createStackNavigator();
 
 // Fonction pour générer dynamiquement les options d'en-tête
@@ -20,12 +21,12 @@ const getHeaderOptions = (title, isMainScreen = false) => ({
   headerShown: true,
   title: title,
   headerStyle: {
-    backgroundColor: 'rgba(217, 131, 26, 0.8)',
+    backgroundColor: 'rgba(217, 131, 26, 0.8)', // Fond de l'en-tête
   },
   headerRight: () => (
     <View style={styles.imageContainer}>
       <Image
-        source={require('./assets/icone unc.jpg')}
+        source={require('./assets/icone unc.jpg')} // Assurez-vous que ce chemin est correct
         style={styles.headerImage}
       />
     </View>
@@ -37,17 +38,15 @@ const getHeaderOptions = (title, isMainScreen = false) => ({
   },
 });
 
-
-
 export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LYSPI">
-        <Stack.Screen
-          name="LYSPI"
-          component={EcranAccueil}
-          options={getHeaderOptions('LYSPI', true)} // true pour LYSPI
-        />
+      <Stack.Screen
+    name="LYSPI"
+    component={EcranAccueil}
+    options={getHeaderOptions('LYSPI', true)} // true pour LYSPI
+  />
         <Stack.Screen
           name="Etudiant"
           component={ConnexionEtudiant}
@@ -56,7 +55,7 @@ export default function Navigation() {
         <Stack.Screen
           name="CompteEtudiant"
           component={EcranCompteEtudiant}
-          options={getHeaderOptions('CompteEtudiant')} // false par défaut
+          options={getHeaderOptions('Compte Etudiant')} // false par défaut
         />
         <Stack.Screen
           name="Confirmation"
@@ -66,7 +65,7 @@ export default function Navigation() {
         <Stack.Screen
           name="Motdepasse"
           component={Motdepasse}
-          options={getHeaderOptions('Motdepasse')} // false par défaut
+          options={getHeaderOptions('Mot de passe')} // false par défaut
         />
         <Stack.Screen
           name="Accueil"
@@ -88,16 +87,12 @@ export default function Navigation() {
           component={Quitter}
           options={getHeaderOptions('Quitter')}
         />
-          <Stack.Screen
+        <Stack.Screen
           name="ApplyScreen"
           component={ApplyScreen}
           options={getHeaderOptions('ApplyScreen')}
         />
-     
-    
       </Stack.Navigator>
-  
-
     </NavigationContainer>
   );
 }
